@@ -19,5 +19,9 @@ public class JpaDemoApplication implements CommandLineRunner{
 	private void guardar() {
 		System.out.println("Insertando un registro");
 	}
+	
+	private void eliminar() {
+		System.out.println("Eliminado un registro");
+	}
 
 }
