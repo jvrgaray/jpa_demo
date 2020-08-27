@@ -1,11 +1,16 @@
 package com.jvrgaray;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import com.jvrgaray.repository.CategoriasRepository;
+
 @SpringBootApplication
 public class JpaDemoApplication implements CommandLineRunner{
+	@Autowired
+	private CategoriasRepository repo;
 
 	public static void main(String[] args) {
 		SpringApplication.run(JpaDemoApplication.class, args);
@@ -13,7 +18,7 @@ public class JpaDemoApplication implements CommandLineRunner{
 
 	@Override
 	public void run(String... args) throws Exception {
-		guardar();
+		System.out.println(repo);
 	}
 	
 	private void guardar() {
