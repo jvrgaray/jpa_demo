@@ -23,7 +23,7 @@ public class JpaDemoApplication implements CommandLineRunner{
 
 	@Override
 	public void run(String... args) throws Exception {
-		existeId();
+		guardarTodas();
 	}
 	
 	private void guardar() {
@@ -91,5 +91,35 @@ public class JpaDemoApplication implements CommandLineRunner{
 	private void existeId() {
 		boolean existe = repo.existsById(881);
 		System.out.println("La categoria existe: "+existe);
+	}
+	
+	private void guardarTodas() {
+		List<Categoria> entities = getListaCategorias();
+		repo.saveAll(entities);
+	}
+	
+	private List<Categoria> getListaCategorias(){
+		List<Categoria> lista = new LinkedList<Categoria>();
+		
+		//categoria 1
+		Categoria cat1 = new Categoria();
+		cat1.setNombre("Programador de Blockchain");
+		cat1.setDescripcion("Trabajos relacionados con Bitcoin y criptomonedas");
+		
+		//categoria 2
+		Categoria cat2 = new Categoria();
+		cat2.setNombre("Soldador/Pintura");
+		cat2.setDescripcion("Trabajos relacionados con soldadura, pintura y enderezado");
+		
+		//categoria 3
+		Categoria cat3 = new Categoria();
+		cat3.setNombre("Ingeniero industrial");
+		cat3.setDescripcion("Trabajos relacionados con ingenieria industrial");
+		
+		lista.add(cat1);
+		lista.add(cat2);
+		lista.add(cat3);
+		
+		return lista;
 	}
 }
