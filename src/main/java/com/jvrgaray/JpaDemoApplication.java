@@ -21,25 +21,37 @@ public class JpaDemoApplication implements CommandLineRunner{
 
 	@Override
 	public void run(String... args) throws Exception {
-		buscarPorId();
+		eliminar();
 	}
 	
 	private void guardar() {
 		Categoria c = new Categoria();
-		c.setNombre("Finanzas");
-		c.setDescripcion("Trabajo relacionado con finanzas y contabilidad");
+		c.setNombre("Ingenieria de software");
+		c.setDescripcion("Desarrollo de sistemas");
 		
 		repo.save(c);
 		System.out.println(c);
 	}
 	
 	private void eliminar() {
-		System.out.println("Eliminado un registro");
+		int idCategoria = 1;
+		repo.deleteById(idCategoria);
 	}
 	
 	private void buscarPorId() {
 		Optional<Categoria> optional = repo.findById(1);
 		if(optional.isPresent()) {
+			System.out.println(optional.get());
+		}
+	}
+	
+	private void modificar() {
+		Optional<Categoria> optional = repo.findById(1);
+		if(optional.isPresent()) {
+			Categoria c = optional.get();
+			c.setNombre("Ingenieria de software");
+			c.setDescripcion("Desarrollo de sistemas");
+			repo.save(c);
 			System.out.println(optional.get());
 		}
 	}
