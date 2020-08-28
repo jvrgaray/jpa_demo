@@ -23,7 +23,7 @@ public class JpaDemoApplication implements CommandLineRunner{
 
 	@Override
 	public void run(String... args) throws Exception {
-		encontrarPorIds();
+		buscarTodos();
 	}
 	
 	private void guardar() {
@@ -74,6 +74,14 @@ public class JpaDemoApplication implements CommandLineRunner{
 		ids.add(10);
 		Iterable<Categoria> categorias = repo.findAllById(ids);
 		
+		for(Categoria c:categorias) {
+			System.out.println(c);
+
+		}
+	}
+	
+	private void buscarTodos() {
+		Iterable<Categoria> categorias= repo.findAll();
 		for(Categoria c:categorias) {
 			System.out.println(c);
 
