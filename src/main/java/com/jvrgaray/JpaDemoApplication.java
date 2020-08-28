@@ -1,5 +1,7 @@
 package com.jvrgaray;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -19,7 +21,7 @@ public class JpaDemoApplication implements CommandLineRunner{
 
 	@Override
 	public void run(String... args) throws Exception {
-		guardar();
+		buscarPorId();
 	}
 	
 	private void guardar() {
@@ -33,6 +35,13 @@ public class JpaDemoApplication implements CommandLineRunner{
 	
 	private void eliminar() {
 		System.out.println("Eliminado un registro");
+	}
+	
+	private void buscarPorId() {
+		Optional<Categoria> optional = repo.findById(1);
+		if(optional.isPresent()) {
+			System.out.println(optional.get());
+		}
 	}
 
 }
