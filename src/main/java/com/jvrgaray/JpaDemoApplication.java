@@ -23,7 +23,7 @@ public class JpaDemoApplication implements CommandLineRunner{
 
 	@Override
 	public void run(String... args) throws Exception {
-		buscarTodos();
+		existeId();
 	}
 	
 	private void guardar() {
@@ -86,5 +86,10 @@ public class JpaDemoApplication implements CommandLineRunner{
 			System.out.println(c);
 
 		}
+	}
+	
+	private void existeId() {
+		boolean existe = repo.existsById(881);
+		System.out.println("La categoria existe: "+existe);
 	}
 }
