@@ -21,7 +21,7 @@ public class JpaDemoApplication implements CommandLineRunner{
 
 	@Override
 	public void run(String... args) throws Exception {
-		eliminar();
+		conteo();
 	}
 	
 	private void guardar() {
@@ -54,6 +54,11 @@ public class JpaDemoApplication implements CommandLineRunner{
 			repo.save(c);
 			System.out.println(optional.get());
 		}
+	}
+	
+	private void conteo() {
+		long count = repo.count();
+		System.out.println("total categorias = "+count);
 	}
 
 }
