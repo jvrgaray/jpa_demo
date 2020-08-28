@@ -1,5 +1,7 @@
 package com.jvrgaray;
 
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +23,7 @@ public class JpaDemoApplication implements CommandLineRunner{
 
 	@Override
 	public void run(String... args) throws Exception {
-		eliminarTodos();
+		encontrarPorIds();
 	}
 	
 	private void guardar() {
@@ -65,4 +67,16 @@ public class JpaDemoApplication implements CommandLineRunner{
 		repo.deleteAll();
 	}
 
+	private void encontrarPorIds() {
+		List<Integer> ids = new LinkedList<Integer>();
+		ids.add(1);
+		ids.add(4);
+		ids.add(10);
+		Iterable<Categoria> categorias = repo.findAllById(ids);
+		
+		for(Categoria c:categorias) {
+			System.out.println(c);
+
+		}
+	}
 }
