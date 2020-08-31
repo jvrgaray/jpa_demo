@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 
 import com.jvrgaray.model.Categoria;
@@ -24,7 +26,7 @@ public class JpaDemoApplication implements CommandLineRunner{
 
 	@Override
 	public void run(String... args) throws Exception {
-		buscarTodosOrdenados();
+		buscarTodosPaginacion();
 	}
 	
 	private void guardar() {
@@ -136,9 +138,17 @@ public class JpaDemoApplication implements CommandLineRunner{
 	}
 	
 	private void buscarTodosOrdenados() {
-		List<Categoria> categorias = repo.findAll(Sort.by("nombre"));
+		List<Categoria> categorias = repo.findAll(Sort.by("nombre").descending());
 		for (Categoria c:categorias) {
 			System.out.println(c.toString());
 		}
+	}
+	
+	private void buscarTodosPaginacion() {
+		Page<Categoria> categorias = repo.findAll(PageRequest.of(0, 5));
+		for (Categoria c: categorias.getContent()) {
+			System.out.println(c.toString());
+		}
+		
 	}
 }
