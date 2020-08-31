@@ -23,7 +23,7 @@ public class JpaDemoApplication implements CommandLineRunner{
 
 	@Override
 	public void run(String... args) throws Exception {
-		buscarTodosJpa();
+		borrarTodosEnBloque();
 	}
 	
 	private void guardar() {
@@ -128,5 +128,9 @@ public class JpaDemoApplication implements CommandLineRunner{
 		for (Categoria c:categorias) {
 			System.out.println(c.toString());
 		}
+	}
+	
+	private void borrarTodosEnBloque() {
+		repo.deleteAllInBatch();
 	}
 }
