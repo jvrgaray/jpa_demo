@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.data.domain.Sort;
 
 import com.jvrgaray.model.Categoria;
 import com.jvrgaray.repository.CategoriasRepository;
@@ -23,7 +24,7 @@ public class JpaDemoApplication implements CommandLineRunner{
 
 	@Override
 	public void run(String... args) throws Exception {
-		borrarTodosEnBloque();
+		buscarTodosOrdenados();
 	}
 	
 	private void guardar() {
@@ -132,5 +133,12 @@ public class JpaDemoApplication implements CommandLineRunner{
 	
 	private void borrarTodosEnBloque() {
 		repo.deleteAllInBatch();
+	}
+	
+	private void buscarTodosOrdenados() {
+		List<Categoria> categorias = repo.findAll(Sort.by("nombre"));
+		for (Categoria c:categorias) {
+			System.out.println(c.toString());
+		}
 	}
 }
