@@ -12,7 +12,7 @@
  */
 package com.jvrgaray.repository;
 
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.jvrgaray.model.Categoria;
 
@@ -20,6 +20,7 @@ import com.jvrgaray.model.Categoria;
  * @author 2b-0088
  *
  */
-public interface CategoriasRepository extends CrudRepository<Categoria, Integer> {
+//public interface CategoriasRepository extends CrudRepository<Categoria, Integer> {
+public interface CategoriasRepository extends JpaRepository<Categoria, Integer> {
 
 }

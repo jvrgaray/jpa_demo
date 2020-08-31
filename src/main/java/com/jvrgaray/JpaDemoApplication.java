@@ -23,7 +23,7 @@ public class JpaDemoApplication implements CommandLineRunner{
 
 	@Override
 	public void run(String... args) throws Exception {
-		guardarTodas();
+		buscarTodosJpa();
 	}
 	
 	private void guardar() {
@@ -121,5 +121,12 @@ public class JpaDemoApplication implements CommandLineRunner{
 		lista.add(cat3);
 		
 		return lista;
+	}
+	
+	private void buscarTodosJpa() {
+		List<Categoria> categorias = repo.findAll();
+		for (Categoria c:categorias) {
+			System.out.println(c.toString());
+		}
 	}
 }
