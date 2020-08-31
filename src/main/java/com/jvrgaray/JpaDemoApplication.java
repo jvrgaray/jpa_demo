@@ -26,7 +26,7 @@ public class JpaDemoApplication implements CommandLineRunner{
 
 	@Override
 	public void run(String... args) throws Exception {
-		buscarTodosPaginacion();
+		buscarTodosPaginacionOrdenados();
 	}
 	
 	private void guardar() {
@@ -149,6 +149,12 @@ public class JpaDemoApplication implements CommandLineRunner{
 		for (Categoria c: categorias.getContent()) {
 			System.out.println(c.toString());
 		}
-		
+	}
+	
+	private void buscarTodosPaginacionOrdenados() {
+		Page<Categoria> categorias = repo.findAll(PageRequest.of(0, 5, Sort.by("nombre")));
+		for (Categoria c: categorias.getContent()) {
+			System.out.println(c.toString());
+		}
 	}
 }
