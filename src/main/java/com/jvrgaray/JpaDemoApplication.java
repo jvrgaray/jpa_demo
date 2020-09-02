@@ -166,7 +166,7 @@ public class JpaDemoApplication implements CommandLineRunner{
 	private void buscarVacantes() {
 		List<Vacante> lista = repoVacantes.findAll();
 		for(Vacante v:lista) {
-			System.out.println(v.toString());
+			System.out.println(v.getId()+" "+v.getNombre()+" "+v.getCategoria().getNombre());
 		}
 	}
 }
