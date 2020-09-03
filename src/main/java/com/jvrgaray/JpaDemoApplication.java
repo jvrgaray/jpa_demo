@@ -42,7 +42,7 @@ public class JpaDemoApplication implements CommandLineRunner{
 
 	@Override
 	public void run(String... args) throws Exception {
-		crearUsuarioConUnPerfil();
+		buscarUsuario();
 	}
 	
 	private void guardar() {
@@ -239,5 +239,19 @@ public class JpaDemoApplication implements CommandLineRunner{
 		user.agregar(p2);
 		
 		repoUsuarios.save(user);
+	}
+	
+	private void buscarUsuario() {
+		Optional<Usuario> optional = repoUsuarios.findById(1);
+		if(optional.isPresent()) {
+			Usuario u = optional.get();
+			System.out.println("Usuario: "+ u.getNombre());
+			System.out.println("Perfiles asignados");
+			for(Perfil p:u.getPerfiles()) {
+				System.out.println(p.getPerfil());
+			}
+		}else {
+			System.out.println("Usuario no encontrado");
+		}
 	}
 }
