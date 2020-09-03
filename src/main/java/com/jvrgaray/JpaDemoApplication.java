@@ -14,6 +14,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 
 import com.jvrgaray.model.Categoria;
+import com.jvrgaray.model.Perfil;
 import com.jvrgaray.model.Vacante;
 import com.jvrgaray.repository.CategoriasRepository;
 import com.jvrgaray.repository.PerfilesRepository;
@@ -40,7 +41,7 @@ public class JpaDemoApplication implements CommandLineRunner{
 
 	@Override
 	public void run(String... args) throws Exception {
-		guardarVacante();
+		crearPerfilesAplicacion();
 	}
 	
 	private void guardar() {
@@ -194,5 +195,27 @@ public class JpaDemoApplication implements CommandLineRunner{
 		c.setId(15);
 		vacante.setCategoria(c);
 		repoVacantes.save(vacante);
+	}
+	
+	private void crearPerfilesAplicacion() {
+		repoPerfiles.saveAll(getPerfilesAplicacion());
+	}
+	
+	private List<Perfil> getPerfilesAplicacion(){
+		List<Perfil> lista = new LinkedList<Perfil>();
+		Perfil p1 = new Perfil();
+		p1.setPerfil("Supervisor");
+		
+		Perfil p2 = new Perfil();
+		p2.setPerfil("Adminitrador");
+		
+		Perfil p3 = new Perfil();
+		p3.setPerfil("Usuario");
+		
+		lista.add(p1);
+		lista.add(p2);
+		lista.add(p3);
+		
+		return lista;
 	}
 }
