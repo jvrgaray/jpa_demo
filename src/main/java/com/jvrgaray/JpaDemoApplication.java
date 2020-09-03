@@ -1,5 +1,6 @@
 package com.jvrgaray;
 
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
@@ -31,7 +32,7 @@ public class JpaDemoApplication implements CommandLineRunner{
 
 	@Override
 	public void run(String... args) throws Exception {
-		buscarVacantes();
+		guardarVacante();
 	}
 	
 	private void guardar() {
@@ -168,5 +169,22 @@ public class JpaDemoApplication implements CommandLineRunner{
 		for(Vacante v:lista) {
 			System.out.println(v.getId()+" "+v.getNombre()+" "+v.getCategoria().getNombre());
 		}
+	}
+	
+	private void guardarVacante() {
+		Vacante vacante = new Vacante();
+		vacante.setNombre("Profesor de matematicas");
+		vacante.setDescripcion("Escuela primaria solicita profesor para curso de matematicas");
+		vacante.setFecha(new Date());
+		vacante.setSalario(8500.0);
+		vacante.setEstatus("Aprobada");
+		vacante.setDestacado(0);
+		vacante.setImagen("escuela.jpg");
+		vacante.setDetalles("<h1>Los requisitos para profesor de matematicas</h1>");
+		
+		Categoria c = new Categoria();
+		c.setId(15);
+		vacante.setCategoria(c);
+		repoVacantes.save(vacante);
 	}
 }
