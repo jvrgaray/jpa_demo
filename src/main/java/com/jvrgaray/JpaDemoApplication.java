@@ -16,6 +16,8 @@ import org.springframework.data.domain.Sort;
 import com.jvrgaray.model.Categoria;
 import com.jvrgaray.model.Vacante;
 import com.jvrgaray.repository.CategoriasRepository;
+import com.jvrgaray.repository.PerfilesRepository;
+import com.jvrgaray.repository.UsuariosRepository;
 import com.jvrgaray.repository.VacantesRepository;
 
 @SpringBootApplication
@@ -25,6 +27,12 @@ public class JpaDemoApplication implements CommandLineRunner{
 	
 	@Autowired
 	private VacantesRepository repoVacantes;
+	
+	@Autowired
+	private PerfilesRepository repoPerfiles;
+	
+    @Autowired
+    private UsuariosRepository repoUsuarios;
 
 	public static void main(String[] args) {
 		SpringApplication.run(JpaDemoApplication.class, args);
