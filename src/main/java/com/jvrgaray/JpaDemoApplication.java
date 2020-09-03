@@ -15,6 +15,7 @@ import org.springframework.data.domain.Sort;
 
 import com.jvrgaray.model.Categoria;
 import com.jvrgaray.model.Perfil;
+import com.jvrgaray.model.Usuario;
 import com.jvrgaray.model.Vacante;
 import com.jvrgaray.repository.CategoriasRepository;
 import com.jvrgaray.repository.PerfilesRepository;
@@ -41,7 +42,7 @@ public class JpaDemoApplication implements CommandLineRunner{
 
 	@Override
 	public void run(String... args) throws Exception {
-		crearPerfilesAplicacion();
+		crearUsuarioConUnPerfil();
 	}
 	
 	private void guardar() {
@@ -217,5 +218,26 @@ public class JpaDemoApplication implements CommandLineRunner{
 		lista.add(p3);
 		
 		return lista;
+	}
+	
+	private void crearUsuarioConUnPerfil() {
+		Usuario user = new Usuario();
+		user.setNombre("Javier Garay");
+		user.setEmail("jgaray@gmail.com");
+		user.setFechaRegistro(new Date());
+		user.setUsername("jgaray");
+		user.setPassword("1234");
+		user.setEstatus(1);
+		
+		Perfil p1 = new Perfil();
+		p1.setId(2);
+		
+		Perfil p2 = new Perfil();
+		p2.setId(3);
+		
+		user.agregar(p1);
+		user.agregar(p2);
+		
+		repoUsuarios.save(user);
 	}
 }
